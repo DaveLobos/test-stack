@@ -1,0 +1,42 @@
+html {
+    font-size:16px;
+}
+body {
+    font-family:"Inter", sans-serif;
+    background-color:#111;
+    color:#eee;
+}
+h3, h4 {
+    margin:0 0 0.75em 0;
+}
+#articles {
+    max-width:1024px;
+    margin:auto;
+    display:grid;
+    grid-auto-rows:max-content;
+    grid-gap:1rem;
+
+    & > :first-child {
+        justify-self:end;
+    }
+
+    & > :last-child {
+        display:grid;
+        grid-auto-rows:max-content;
+        grid-gap:1rem;
+
+        & > div {
+            background-color:#333;
+            padding:1rem;
+            border-radius:0.5rem;
+        }
+    }
+}
+
+@media all and (min-width:800px) {
+    #articles {
+        & > :last-child {
+            grid-template-columns:repeat(3, 1fr);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  stack-node:
+    build: ./node
+    command: npm start
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./node/app
+          target: /usr/src/app
+
+  stack-nginx:
+    build: ./nginx
+    depends_on:
+      - stack-node
+    ports:
+      - "8080:8080"
+    develop:
+      watch:
+        - action: sync
+          path: ./nginx/public
+          target: /usr/share/nginx/public
